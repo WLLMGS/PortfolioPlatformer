@@ -32,8 +32,8 @@ public class ParallaxScript : MonoBehaviour {
 
 		_previousPosition = currentPlayerPos;
 
-		float displacementX = (-dx * Time.deltaTime * _moveSpeed) / (_zAxis);
-		float displacementY = (-dy * Time.deltaTime * _moveSpeed) / (_zAxis);		
+		float displacementX = (-dx * Time.deltaTime * _moveSpeed) / (_zAxis / 2.0f);
+		float displacementY = (-dy * Time.deltaTime * _moveSpeed) / (_zAxis / 5.0f);		
 
 
 		transform.position += new Vector3(displacementX, displacementY,0);

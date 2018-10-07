@@ -4,74 +4,60 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
 
-	[SerializeField] private float _moveSpeed = 10.0f;
-	[SerializeField] private float _jumpForce = 10.0f;
+    [SerializeField] private float _moveForce = 5.0f;
+	[SerializeField] private float _maxSpeed = 5.0f;
 
-	[SerializeField] private float _maxMoveSpeed = 10.0f;
-
+	[SerializeField] private float _jumpForce = 50.0f;
 
     private Rigidbody2D _rigid;
 
-	private float _xAxis = 0.0f;
-
-    // Use this for initialization
+    float _xaxis = 0.0f;
+	bool _doJump = false;
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
 
 #if DEBUG
-        Assert.IsNotNull(_rigid, "DEPENDECY ERROR: No RigidBody2D in playermovement");
+        Assert.IsNotNull(_rigid, "DEPENDENCY ERROR: no rigidbody2d on player");
 #endif
     }
 
-	void Update()
-	{
-		_xAxis = Input.GetAxis("Horizontal");
+    void Update()
+    {
+        _xaxis = Input.GetAxis("Horizontal");
+		_doJump = Input.GetKeyDown(KeyCode.Space);
+
+		CheckFlip();
+		HandleJump();
 	}
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-		HandleJump();
-		HandleMovement();
-		HandleDirection();
+	    HandleHorizontalMovement();
     }
 
-
-    void HandleMovement()
+    void HandleHorizontalMovement()
     {
-        //_rigid.velocity = new Vector2(_xAxis * _moveSpeed, _rigid.velocity.y);
-		//_rigid.AddForce(new Vector2(_xAxis * _moveSpeed, 0.0f), ForceMode2D.Force);
-		_rigid.AddRelativeForce(new Vector2(_xAxis * _moveSpeed, 0.0f));
+		if(Mathf.Abs(_rigid.velocity.x) < _maxSpeed) _rigid.AddForce(new Vector2(_moveForce * _xaxis, 0.0f));
+		else _rigid.velocity = new Vector2(Mathf.Sign(_xaxis) * _maxSpeed, _rigid.velocity.y);
 
-		Debug.Log(_rigid.velocity);
+        if (Mathf.Approximately(_xaxis, 0.0f)) _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+    }
 
-		//clamp velocity
-		_rigid.velocity = new Vector2(Mathf.Clamp(_rigid.velocity.x, -_maxMoveSpeed,_maxMoveSpeed), _rigid.velocity.y);
-	
-		if(_xAxis == 0.0f) _rigid.velocity = new Vector2(0.0f, _rigid.velocity.y);
-	}
-
-	void HandleDirection()
+	void CheckFlip()
 	{
-		
-		//handle direction
-		if(_xAxis < 0) transform.localScale = new Vector3(-1,1,1);
-		else if (_xAxis > 0) transform.localScale = new Vector3(1,1,1);
-
+		if(_xaxis > 0) transform.localScale = new Vector3(1,1,1);
+		else if(_xaxis < 0) transform.localScale = new Vector3(-1,1,1);
 	}
 
 	void HandleJump()
 	{
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			//set velocity to zero before applying force
-			//_rigid.velocity = Vector2.zero;
-			_rigid.AddForce(new Vector2(0,_jumpForce), ForceMode2D.Impulse);
-		}
+		if(_doJump) _rigid.AddForce(new Vector2(0,_jumpForce), ForceMode2D.Impulse);
 	}
+
+	
+
 }
