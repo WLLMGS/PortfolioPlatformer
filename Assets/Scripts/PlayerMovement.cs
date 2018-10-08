@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigid;
 
     float _xaxis = 0.0f;
+	
+	bool _canJump = false;
+
+	
+
 	bool _doJump = false;
     void Start()
     {
@@ -55,9 +60,16 @@ public class PlayerMovement : MonoBehaviour
 
 	void HandleJump()
 	{
-		if(_doJump) _rigid.AddForce(new Vector2(0,_jumpForce), ForceMode2D.Impulse);
+		if(_doJump && _canJump)
+		{
+			_canJump = false;
+			_rigid.AddForce(new Vector2(0,_jumpForce), ForceMode2D.Impulse);
+		}
 	}
 
-	
+	 void OnCollisionEnter2D(Collision2D col)
+    {
+		if(col.gameObject.tag == "Ground") _canJump = true;
+	}
 
 }

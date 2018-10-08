@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireballMovementBehavior : MonoBehaviour {
 
-	private float _moveSpeed = 10.0f;
+	private float _moveSpeed = 8.0f;
 
 	private Rigidbody2D _rigid;
 
