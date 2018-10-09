@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114051217026911050}
   m_Layer: 0
   m_Name: fireball
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda280bc1ec64cf489af6b943a0b446a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _smoke: {fileID: 1690778706900810, guid: d65d4e560dc00904793b78da860f2395, type: 2}
 --- !u!212 &212187120533741460
 SpriteRenderer:
   m_ObjectHideFlags: 1
