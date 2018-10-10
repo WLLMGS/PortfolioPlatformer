@@ -18,9 +18,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	bool _canJump = false;
 
-	
-
-	bool _doJump = false;
+		bool _doJump = false;
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -70,6 +68,14 @@ public class PlayerMovement : MonoBehaviour
 	 void OnCollisionEnter2D(Collision2D col)
     {
 		if(col.gameObject.tag == "Ground") _canJump = true;
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if(col.tag == "screen")
+		{
+			Camera.main.transform.position = new Vector3(col.transform.position.x, col.transform.position.y, -100);
+		}
 	}
 
 }

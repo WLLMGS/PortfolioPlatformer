@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114809404309615562}
   - component: {fileID: 70202878609638918}
   - component: {fileID: 50021211769198426}
-  m_Layer: 0
+  - component: {fileID: 114929367833187886}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634660167013036}
   - component: {fileID: 212586544369367228}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: playerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,8 +57,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4117705297273000}
-  m_Layer: 0
-  m_Name: gunpoint
+  m_Layer: 2
+  m_Name: swordpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1603407819466926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.314, y: 0.048, z: 0}
+  m_LocalPosition: {x: 0.57, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4615415302450434}
@@ -83,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366788618342702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7626909, y: -2.7, z: 0}
+  m_LocalPosition: {x: -8.6, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4117705297273000}
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1467992086216966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.115665436, y: 0.013050735, z: 0.5}
+  m_LocalPosition: {x: 0.115665436, y: 0.013050735, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4615415302450434}
@@ -182,6 +183,19 @@ MonoBehaviour:
   _moveForce: 100
   _maxSpeed: 5
   _jumpForce: 10
+--- !u!114 &114929367833187886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366788618342702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013630e8f110af145a2975352ebeafbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slashEffect: {fileID: 1690778706900810, guid: d65d4e560dc00904793b78da860f2395,
+    type: 2}
 --- !u!212 &212513837549278976
 SpriteRenderer:
   m_ObjectHideFlags: 1

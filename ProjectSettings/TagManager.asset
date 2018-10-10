@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerBullet
   - Fog
+  - screen
+  - Box
   layers:
   - Default
   - TransparentFX
