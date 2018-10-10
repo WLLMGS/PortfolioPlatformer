@@ -35,7 +35,17 @@ public class FireballMovementBehavior : MonoBehaviour
         if (collider.tag == "Enemy")
         {
             Explode();
+            
+            Health enemyHealth = collider.gameObject.transform.parent.GetComponent<Health>();
+
+            if(enemyHealth != null) 
+            {
+                enemyHealth.AddHealth(-1);
+            }
+
+
             Destroy(gameObject);
+
         }
     }
 

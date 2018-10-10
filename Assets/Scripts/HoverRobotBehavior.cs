@@ -10,23 +10,31 @@ public class HoverRobotBehavior : MonoBehaviour
     private GameObject _player;
     private bool _doFollowPlayer = false;
     // Use this for initialization
+
+    private Health _health;
+
     void Start()
     {
-
+        _health = GetComponent<Health>();
     }
 
     // Update is called once per frame
     void Update()
     {
         GoToPlayer();
+        CheckIfAlive();
     }
 
+    void CheckIfAlive()
+    {
+        if (!_health.IsAlive()) Destroy(gameObject);
+    }
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
             if (_player == null) _player = collider.gameObject;
-            PlayerDetected();
+            _doFollowPlayer = true;
         }
     }
 
@@ -38,22 +46,16 @@ public class HoverRobotBehavior : MonoBehaviour
         }
 
     }
-
-    void PlayerDetected()
-    {
-        _doFollowPlayer = true;
-
-        if (_player.transform.position.x < transform.position.x)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else transform.localScale = new Vector3(1, 1, 1);
-    }
-
     void GoToPlayer()
     {
         if (_doFollowPlayer)
         {
+            if (_player.transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else transform.localScale = new Vector3(1, 1, 1);
+
             float distance = Mathf.Abs(transform.position.x - _player.transform.position.x);
 
             if (distance > 1.0f)

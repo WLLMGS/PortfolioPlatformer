@@ -23,6 +23,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
     {
 		CheckIfMoving();
         CheckJump();
+        CheckIfAttacking();
     }
 
 	void CheckIfMoving()
@@ -36,5 +37,13 @@ public class PlayerAnimationBehavior : MonoBehaviour
     void CheckJump()
     {
         if(Input.GetKeyDown(KeyCode.Space)) _animator.SetTrigger("Jump");
+    }
+
+    void CheckIfAttacking()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            _animator.SetTrigger("Attack");
+        }
     }
 }
