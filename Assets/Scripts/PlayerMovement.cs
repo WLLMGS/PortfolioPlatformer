@@ -8,17 +8,19 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] private float _moveForce = 5.0f;
-	[SerializeField] private float _maxSpeed = 5.0f;
+    [SerializeField] private float _maxSpeed = 5.0f;
 
-	[SerializeField] private float _jumpForce = 50.0f;
+    [SerializeField] private float _jumpForce = 50.0f;
+
+	private bool _IsGrounded = false;
 
     private Rigidbody2D _rigid;
 
     float _xaxis = 0.0f;
-	
-	bool _canJump = false;
 
-		bool _doJump = false;
+    bool _canJump = false;
+
+    bool _doJump = false;
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -31,51 +33,71 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         _xaxis = Input.GetAxis("Horizontal");
-		_doJump = Input.GetKeyDown(KeyCode.Space);
+        _doJump = Input.GetKeyDown(KeyCode.Space);
 
-		CheckFlip();
-		HandleJump();
-	}
+        CheckFlip();
+        HandleJump();
+        HandleDash();
+    }
 
     void FixedUpdate()
     {
-	    HandleHorizontalMovement();
+        HandleHorizontalMovement();
     }
 
     void HandleHorizontalMovement()
     {
-		if(Mathf.Abs(_rigid.velocity.x) < _maxSpeed) _rigid.AddForce(new Vector2(_moveForce * _xaxis, 0.0f));
-		else _rigid.velocity = new Vector2(Mathf.Sign(_xaxis) * _maxSpeed, _rigid.velocity.y);
-
-        if (Mathf.Approximately(_xaxis, 0.0f)) _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+        if (Mathf.Abs(_rigid.velocity.x) < _maxSpeed) _rigid.AddForce(new Vector2(_moveForce * _xaxis, 0.0f));
     }
 
-	void CheckFlip()
-	{
-		if(_xaxis > 0) transform.localScale = new Vector3(1,1,1);
-		else if(_xaxis < 0) transform.localScale = new Vector3(-1,1,1);
-	}
-
-	void HandleJump()
-	{
-		if(_doJump && _canJump)
-		{
-			_canJump = false;
-			_rigid.AddForce(new Vector2(0,_jumpForce), ForceMode2D.Impulse);
-		}
-	}
-
-	 void OnCollisionEnter2D(Collision2D col)
+    void CheckFlip()
     {
-		if(col.gameObject.tag == "Ground") _canJump = true;
-	}
+        if (_xaxis > 0) transform.localScale = new Vector3(1, 1, 1);
+        else if (_xaxis < 0) transform.localScale = new Vector3(-1, 1, 1);
+    }
 
-	void OnTriggerEnter2D(Collider2D col)
-	{
-		if(col.tag == "screen")
-		{
-			Camera.main.transform.position = new Vector3(col.transform.position.x, col.transform.position.y, -100);
+    void HandleJump()
+    {
+        if (_doJump && _canJump)
+        {
+            _canJump = false;
+            _rigid.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
+        }
+    }
+
+    void HandleDash()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+			//apply more force if player is grounded to compensate for friction
+			Vector2 force;
+			if(!_IsGrounded) force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x), 0.0f);
+			else force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x) * 1.5f, 0.0f);
+			_rigid.AddForce(force, ForceMode2D.Impulse);
 		}
-	}
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            _canJump = true;
+			_IsGrounded = true;
+        }
+    }
+ 	void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+    		_IsGrounded = false;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "screen")
+        {
+            Camera.main.transform.position = new Vector3(col.transform.position.x, col.transform.position.y, -100);
+        }
+    }
 
 }

@@ -31,11 +31,10 @@ public class PlayerMeleeAttack : MonoBehaviour
 
             if (hit)
             {
-                if (hit.collider.gameObject.tag == "Box")
+                if (hit.collider.gameObject.tag == "Enemy")
                 {
 					SpawnSlash(hit.point.x, hit.point.y);
-                    var rb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-                    rb.AddForce(transform.right * x * 15.0f, ForceMode2D.Impulse);
+                    hit.collider.gameObject.GetComponent<Health>().AddHealth(-1);
                 }
             }
         }
