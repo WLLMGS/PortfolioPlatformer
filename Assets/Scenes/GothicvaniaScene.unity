@@ -2343,6 +2343,11 @@ Prefab:
       propertyPath: _jumpForce
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114543954091129466, guid: 521d576c19dd7014dbe41c8448360f4e,
+        type: 2}
+      propertyPath: _cooldown
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521d576c19dd7014dbe41c8448360f4e, type: 2}
   m_IsPrefabAsset: 0
