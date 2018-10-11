@@ -9,6 +9,8 @@ public class GhoulScript : MonoBehaviour {
 	[SerializeField] private float _amplitude;
 	private float _angle = 0.0f;
 
+
+	private Vector2 _pushForce = new Vector2(12,7); 
 	private Health _health;
 
 	// Use this for initialization
@@ -53,9 +55,8 @@ public class GhoulScript : MonoBehaviour {
 
 		if(rigid != null)
 		{
-			if(transform.position.x > obj.transform.position.x)	rigid.AddForce(new Vector2(-20,10), ForceMode2D.Impulse);
-			else rigid.AddForce(new Vector2(20,10), ForceMode2D.Impulse);
-		} 
-			
+			if(transform.position.x > obj.transform.position.x)	rigid.AddForce(new Vector2(-_pushForce.x,_pushForce.y), ForceMode2D.Impulse);
+			else rigid.AddForce(new Vector2(_pushForce.x,_pushForce.y), ForceMode2D.Impulse);
+		}
 	}
 }
