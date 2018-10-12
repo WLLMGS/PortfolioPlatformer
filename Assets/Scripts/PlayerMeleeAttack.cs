@@ -7,6 +7,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
 
     [SerializeField] private GameObject _slashEffect;
+    [SerializeField] private GameObject _damageIndicator;
 
     private GameObject _swordpoint;
 
@@ -34,6 +35,7 @@ public class PlayerMeleeAttack : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
 					SpawnSlash(hit.point.x, hit.point.y);
+                    SpawnDamageIndicator(hit.point.x, hit.point.y);
                     hit.collider.gameObject.GetComponent<Health>().AddHealth(-1);
                 }
             }
@@ -44,4 +46,9 @@ public class PlayerMeleeAttack : MonoBehaviour
 	{
 		Instantiate(_slashEffect, new Vector3(x, y, -10), Quaternion.identity);
 	}
+
+    void SpawnDamageIndicator(float x, float y)
+    {
+        Instantiate(_damageIndicator, new Vector3(x,y,-15), Quaternion.identity);
+    }
 }

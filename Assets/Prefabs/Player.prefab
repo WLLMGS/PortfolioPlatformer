@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366788618342702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.6, y: -2.7, z: 0}
+  m_LocalPosition: {x: -14.76, y: -3.02, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4117705297273000}
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6490c495e291aa047960bf0bd695bfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.15
+  _cooldown: 0.05
 --- !u!114 &114666787334182954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveForce: 100
   _maxSpeed: 5
-  _jumpForce: 10
+  _jumpForce: 12
 --- !u!114 &114929367833187886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slashEffect: {fileID: 1690778706900810, guid: d65d4e560dc00904793b78da860f2395,
+    type: 2}
+  _damageIndicator: {fileID: 1632752067284702, guid: a209f3ab40ef04c469a774e370aeeb56,
     type: 2}
 --- !u!212 &212513837549278976
 SpriteRenderer:

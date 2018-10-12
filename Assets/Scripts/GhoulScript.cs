@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class GhoulScript : MonoBehaviour {
 
-
+	[SerializeField] private GameObject _deathAnimation;
 	[SerializeField] private float _amplitude;
 	private float _angle = 0.0f;
 
 
-	private Vector2 _pushForce = new Vector2(5,7); 
+	private Vector2 _pushForce = new Vector2(10,7); 
 	private Health _health;
 
 	// Use this for initialization
@@ -43,6 +43,7 @@ public class GhoulScript : MonoBehaviour {
 	{
 		if(!_health.IsAlive())
 		{
+			Instantiate(_deathAnimation, new Vector3(transform.position.x, transform.position.y, -15), Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}
