@@ -10,7 +10,7 @@ public class GhoulScript : MonoBehaviour {
 	private float _angle = 0.0f;
 
 
-	private Vector2 _pushForce = new Vector2(12,7); 
+	private Vector2 _pushForce = new Vector2(5,7); 
 	private Health _health;
 
 	// Use this for initialization
@@ -55,6 +55,7 @@ public class GhoulScript : MonoBehaviour {
 
 		if(rigid != null)
 		{
+			rigid.velocity = Vector2.zero;
 			if(transform.position.x > obj.transform.position.x)	rigid.AddForce(new Vector2(-_pushForce.x,_pushForce.y), ForceMode2D.Impulse);
 			else rigid.AddForce(new Vector2(_pushForce.x,_pushForce.y), ForceMode2D.Impulse);
 		}
