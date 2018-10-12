@@ -10,6 +10,8 @@ TagManager:
   - Fog
   - screen
   - Box
+  - LevelBound
+  - ScreenBound
   layers:
   - Default
   - TransparentFX
