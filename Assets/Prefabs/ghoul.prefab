@@ -87,6 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2b020a0e6df3446b8c8fa69dc38205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathAnimation: {fileID: 1315108115510428, guid: e45ec5c95dc049d4bb298ed557697834,
+    type: 2}
   _amplitude: 0.75
 --- !u!212 &212408227074745986
 SpriteRenderer:
