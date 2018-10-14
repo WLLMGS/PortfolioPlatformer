@@ -12,6 +12,7 @@ TagManager:
   - Box
   - LevelBound
   - ScreenBound
+  - Spawner
   layers:
   - Default
   - TransparentFX

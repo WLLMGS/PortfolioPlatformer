@@ -29,7 +29,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             float x = transform.localScale.x;
             //RaycastHit2D hit = Physics2D.Raycast(_swordpoint.transform.position, transform.right * x, 1.0f);
-            RaycastHit2D hit = Physics2D.CircleCast(_swordpoint.transform.position, 1.0f, transform.right * x, 1.0f);
+            RaycastHit2D hit = Physics2D.CircleCast(_swordpoint.transform.position, 0.30f, transform.right * x,1.0f);
 
             if (hit)
             {
