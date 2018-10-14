@@ -17,6 +17,7 @@ public class GhoulScript : MonoBehaviour
     void Start()
     {
         _health = GetComponent<Health>();
+        var collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class GhoulScript : MonoBehaviour
         );
     }
 
-   
+
 
     void OnTriggerEnter2D(Collider2D col)
     {

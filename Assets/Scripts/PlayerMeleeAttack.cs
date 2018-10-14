@@ -28,13 +28,15 @@ public class PlayerMeleeAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             float x = transform.localScale.x;
-            RaycastHit2D hit = Physics2D.Raycast(_swordpoint.transform.position, transform.right * x, 1.0f);
+            //RaycastHit2D hit = Physics2D.Raycast(_swordpoint.transform.position, transform.right * x, 1.0f);
+            RaycastHit2D hit = Physics2D.CircleCast(_swordpoint.transform.position, 1.0f, transform.right * x, 1.0f);
 
             if (hit)
             {
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
-					SpawnSlash(hit.point.x, hit.point.y);
+                    SpawnSlash(hit.collider.transform.position.x, hit.collider.transform.position.y);
+					//SpawnSlash(hit.point.x, hit.point.y);
                     SpawnDamageIndicator(hit.point.x, hit.point.y);
                     hit.collider.gameObject.GetComponent<Health>().AddHealth(-1);
                 }
