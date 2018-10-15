@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageIndicator : MonoBehaviour {
-
-	private float _speed = 3.5f;
+public class EnemyHit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +11,11 @@ public class DamageIndicator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position += new Vector3(0,_speed,0) * Time.deltaTime;
+		
+	}
+
+	public virtual void Hit()
+	{
+		Debug.Log("Enemy Hit");
 	}
 }

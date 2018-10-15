@@ -14,6 +14,7 @@ public class HellcatScript : MonoBehaviour
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
+ 
     }
 
     // Update is called once per frame
@@ -30,18 +31,26 @@ public class HellcatScript : MonoBehaviour
         if (collider.tag == "ScreenBound")
         {
             //flip
-            _rigid.velocity = Vector3.zero;
-            _sign *= -1;
-            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+           ChangeDirection();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "LevelBound")
+        if(col.gameObject.tag == "Enemy")
         {
-            _sign *= -1;
-            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), col.gameObject.GetComponent<CapsuleCollider2D>(), true);
         }
+        else if (col.gameObject.tag == "LevelBound" || col.gameObject.tag == "Player")
+        {
+            ChangeDirection();
+        }
+    }
+
+    public void ChangeDirection()
+    {
+        _rigid.velocity = Vector3.zero;
+        _sign *= -1;
+        transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 }

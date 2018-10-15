@@ -26,7 +26,8 @@ GameObject:
   - component: {fileID: 114816111060040602}
   - component: {fileID: 114008149643531298}
   - component: {fileID: 114362674359078826}
-  m_Layer: 0
+  - component: {fileID: 114781354448138202}
+  m_Layer: 8
   m_Name: hellcat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8031123626cc749877e0e569bad586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
+  _health: 2
 --- !u!114 &114362674359078826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +125,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathAnimation: {fileID: 1315108115510428, guid: e45ec5c95dc049d4bb298ed557697834,
     type: 2}
+--- !u!114 &114781354448138202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575997071000954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d0869881919094aa6e0f1469b76892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114816111060040602
 MonoBehaviour:
   m_ObjectHideFlags: 1
