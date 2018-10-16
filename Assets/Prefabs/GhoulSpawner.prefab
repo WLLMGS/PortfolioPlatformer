@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4691686240841760}
   - component: {fileID: 114912911910868162}
+  - component: {fileID: 114081663841901322}
   m_Layer: 0
   m_Name: GhoulSpawner
   m_TagString: Spawner
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114081663841901322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368914376141722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de50248562e014d46a81a0a9a527ecf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gizmoColor: {r: 0, g: 0.11986828, b: 1, a: 1}
 --- !u!114 &114912911910868162
 MonoBehaviour:
   m_ObjectHideFlags: 1
