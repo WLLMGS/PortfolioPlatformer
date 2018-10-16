@@ -7,7 +7,7 @@ public class HellcatScript : MonoBehaviour
 
 
     private float _sign = -1;
-    private float _movespeed = 15.0f;
+    private float _movespeed = 12.0f;
 
     private Rigidbody2D _rigid;
     // Use this for initialization
