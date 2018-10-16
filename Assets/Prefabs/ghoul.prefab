@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114577013784722404}
   - component: {fileID: 114811517900681536}
   - component: {fileID: 114096931819353498}
+  - component: {fileID: 114812749378615196}
   m_Layer: 8
   m_Name: ghoul
   m_TagString: Enemy
@@ -127,6 +128,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathAnimation: {fileID: 1315108115510428, guid: e45ec5c95dc049d4bb298ed557697834,
     type: 2}
+--- !u!114 &114812749378615196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794788480933598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061089e53477cbd4a82c797d39716afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
 --- !u!212 &212408227074745986
 SpriteRenderer:
   m_ObjectHideFlags: 1

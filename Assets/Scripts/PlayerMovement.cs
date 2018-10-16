@@ -11,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _maxSpeed = 5.0f;
 
     [SerializeField] private float _jumpForce = 50.0f;
+    [SerializeField] private float _dashCost = 25.0f;
 
-	private bool _IsGrounded = false;
+    private bool _IsGrounded = false;
 
     private Rigidbody2D _rigid;
+
+    private Stamina _stamina;
 
     float _xaxis = 0.0f;
 
@@ -24,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
-
+        _stamina = GetComponent<Stamina>();
 #if DEBUG
         Assert.IsNotNull(_rigid, "DEPENDENCY ERROR: no rigidbody2d on player");
 #endif
@@ -69,12 +72,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-			//apply more force if player is grounded to compensate for friction
-			Vector2 force;
-			if(!_IsGrounded) force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x), 0.0f);
-			else force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x) * 1.5f, 0.0f);
-			_rigid.AddForce(force, ForceMode2D.Impulse);
-		}
+            if (_stamina.GetCurrentStamina() >= _dashCost)
+            {
+                //apply more force if player is grounded to compensate for friction
+                Vector2 force;
+                if (!_IsGrounded) force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x), 0.0f);
+                else force = new Vector2(_jumpForce * Mathf.Sign(transform.localScale.x) * 1.5f, 0.0f);
+                _rigid.AddForce(force, ForceMode2D.Impulse);
+
+                //subtract stamine
+                _stamina.AddStamina(-_dashCost);
+            }
+
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -82,14 +92,14 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             _canJump = true;
-			_IsGrounded = true;
+            _IsGrounded = true;
         }
     }
- 	void OnCollisionExit2D(Collision2D col)
+    void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
         {
-    		_IsGrounded = false;
+            _IsGrounded = false;
         }
     }
     void OnTriggerEnter2D(Collider2D col)

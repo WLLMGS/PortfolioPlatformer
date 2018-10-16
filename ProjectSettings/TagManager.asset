@@ -13,6 +13,7 @@ TagManager:
   - LevelBound
   - ScreenBound
   - Spawner
+  - Bonfire
   layers:
   - Default
   - TransparentFX
