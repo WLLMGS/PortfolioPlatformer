@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-	[SerializeField] private GameObject _Smoke;
+    [SerializeField] private GameObject _Smoke;
 
     private static GameplayManager _instance = null;
 
@@ -12,10 +12,10 @@ public class GameplayManager : MonoBehaviour
 
     private GameObject _player;
     private GameObject _UIfaithRestored;
-	private GameObject _UIyoudied;
+    private GameObject _UIyoudied;
     private Vector3 _respawnpoint;
 
-	private bool _isplayerdead = false;
+    private bool _isplayerdead = false;
     void Awake()
     {
         if (_instance == null) _instance = this;
@@ -33,7 +33,7 @@ public class GameplayManager : MonoBehaviour
 
         _player = GameObject.Find("Player");
         _UIfaithRestored = GameObject.Find("FaithRestored");
-		_UIyoudied = GameObject.Find("YouDied");
+        _UIyoudied = GameObject.Find("YouDied");
         SetClosestBonfire();
     }
 
@@ -67,14 +67,14 @@ public class GameplayManager : MonoBehaviour
             NotifyPlayerDead();
         }
 
-		if(_isplayerdead)
-		{
-			if(_UIyoudied.GetComponent<FadeTextScript>().IsDone())
-			{
-				ResetPlayer();
-				_isplayerdead = false;
-			}
-		}
+        if (_isplayerdead)
+        {
+            if (_UIyoudied.GetComponent<FadeTextScript>().IsDone())
+            {
+                ResetPlayer();
+                _isplayerdead = false;
+            }
+        }
     }
 
     public static GameplayManager GetInstance()
@@ -93,27 +93,27 @@ public class GameplayManager : MonoBehaviour
     public void NotifyPlayerDead()
     {
         _player.SetActive(false);
-		_UIyoudied.GetComponent<FadeTextScript>().ReActivate();
-		_isplayerdead = true;
-		Instantiate(_Smoke, _player.transform.position, Quaternion.identity);
-	}
+        _UIyoudied.GetComponent<FadeTextScript>().ReActivate();
+        _isplayerdead = true;
+        Instantiate(_Smoke, _player.transform.position, Quaternion.identity);
+    }
 
 
     public void ResetPlayer()
     {
         //respawn player
-		_player.SetActive(true);
-	    _player.transform.position = new Vector3(_respawnpoint.x, _respawnpoint.y, _player.transform.position.z);
+        _player.SetActive(true);
+        _player.transform.position = new Vector3(_respawnpoint.x, _respawnpoint.y, _player.transform.position.z);
         _player.GetComponent<Health>().ResetHealth();
-		_player.GetComponent<Stamina>().ResetStamina();
+        _player.GetComponent<Stamina>().ResetStamina();
         //respawn all the enemies
         RespawnAllMobs();
-	}
+    }
     public void NotifyNewSavepoint(Vector3 position)
     {
         _respawnpoint = position;
         _player.GetComponent<Health>().ResetHealth();
-		_player.GetComponent<Stamina>().ResetStamina();
+        _player.GetComponent<Stamina>().ResetStamina();
         _UIfaithRestored.GetComponent<FadeTextScript>().ReActivate();
         RespawnAllMobs();
     }
